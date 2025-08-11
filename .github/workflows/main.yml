@@ -33,7 +33,7 @@ jobs:
       - name: 获取远程 Worker 最新 commit
         id: get_latest_commit
         env:
-          REPO_URL: "https://api.github.com/repos/yonggekkk/Cloudflare_vless_trojan"
+          REPO_URL: "https://api.github.com/repositories/669386969"
         run: |
           log() { echo "[$(date +'%Y-%m-%d %H:%M:%S')] $1"; }
           log "获取远程最新 _worker.js commit..."
