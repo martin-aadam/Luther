@@ -37,7 +37,9 @@ jobs:
         run: |
           log() { echo "[$(date +'%Y-%m-%d %H:%M:%S')] $1"; }
           log "获取远程最新 _worker.js commit..."
-          LATEST_COMMIT=$(curl -s --retry 3 "$REPO_URL/commits?path=Vless_workers_pages/_worker.js&per_page=1" | jq -r '.[0].sha' || echo "error")
+          RESPONSE=$(curl -s --retry 3 "$REPO_URL/commits?path=Vless_workers_pages/_worker.js&per_page=1")
+          echo "API Response: $RESPONSE"
+          LATEST_COMMIT=$(echo "$RESPONSE" | jq -r '.[0].sha' || echo "error")
           if [ "$LATEST_COMMIT" = "error" ]; then
             log "ERROR: 无法获取远程 commit 信息"
             exit 1
